@@ -1,0 +1,30 @@
+
+/*average severity by age of drivers */
+SELECT Age_of_Driver, AVG(Accident_Severity) AS Average_Severity
+FROM accidents
+JOIN vehicle ON accidents.Accident_Index = vehicle.Accident_Index
+WHERE Age_of_Driver >=17
+GROUP BY Age_of_Driver
+ORDER BY Age_of_Driver;
+
+
+
+
+/*counting severity by age of drivers */
+SELECT Age_of_Driver, Accident_Severity, COUNT(*) AS Severity_Count
+FROM accidents
+JOIN vehicle ON accidents.Accident_Index = vehicle.Accident_Index
+WHERE Age_of_Driver >=17
+GROUP BY Age_of_Driver, Accident_Severity
+ORDER BY Age_of_Driver, Accident_Severity;
+
+
+
+
+/*ctotal accidents by age */
+SELECT Age_of_Driver, COUNT(*) AS Total_Accidents
+FROM vehicle
+JOIN accidents ON vehicle.Accident_Index = accidents.Accident_Index
+WHERE Age_of_Driver >= 17
+GROUP BY Age_of_Driver
+ORDER BY Age_of_Driver;
